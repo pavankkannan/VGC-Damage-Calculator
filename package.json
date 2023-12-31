@@ -1,0 +1,26 @@
+{
+  "name": "damage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild index.jsx --bundle --outfile=bundle.js",
+    "serve": "esbuild index.jsx --bundle --outfile=bundle.js --servedir=."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavankkannan/damage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavankkannan/damage/issues"
+  },
+  "homepage": "https://github.com/pavankkannan/damage#readme",
+  "dependencies": {
+    "esbuild": "^0.19.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
