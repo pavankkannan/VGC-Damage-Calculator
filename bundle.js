@@ -23567,7 +23567,7 @@
     if (!data.species)
       return null;
     console.log(data);
-    const url = window.location.href + "Poke\u0301mon Icons/Big/pm" + data.species.pictureID + "_big.png";
+    const url = window.location.href + "PokemonIcons/Big/pm" + data.species.pictureID + "_big.png";
     return /* @__PURE__ */ import_react.default.createElement("div", { className: "BattlePokemon", onClick: setSidebar }, /* @__PURE__ */ import_react.default.createElement("img", { src: url }));
   }
   function DamageOutput({ estimatedDamage, attacker, defender }) {

@@ -62,7 +62,7 @@ function BattlePokemon({ data, setSidebar }) {
     if (!data.species) return null
     console.log(data)
 
-    const url = window.location.href + "Pokémon Icons/Big/pm" + data.species.pictureID + "_big.png"
+    const url = window.location.href + "PokemonIcons/Big/pm" + data.species.pictureID + "_big.png"
 
     return (
         <div className="BattlePokemon" onClick={setSidebar}>
