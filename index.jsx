@@ -62,7 +62,7 @@ function BattlePokemon({ data, setSidebar }) {
     if (!data.species) return null
     console.log(data)
 
-    const url = "./Pokémon Icons/Big/pm" + data.species.pictureID + "_big.png"
+    const url = window.location.href + "Pokémon Icons/Big/pm" + data.species.pictureID + "_big.png"
 
     return (
         <div className="BattlePokemon" onClick={setSidebar}>
@@ -103,7 +103,7 @@ function calculateDamage(power, attackingStat, defensiveStat) {
 function Move({ move, setMove }) {
 
     return (
-        <div class="Move">
+        <div className="Move">
             <input type="text"></input>
             <input type="number" value={move.power} style={{width: "48px"}} onChange={(e) => {
                 setMove((old) => ({

@@ -23567,7 +23567,7 @@
     if (!data.species)
       return null;
     console.log(data);
-    const url = "./Poke\u0301mon Icons/Big/pm" + data.species.pictureID + "_big.png";
+    const url = window.location.href + "Poke\u0301mon Icons/Big/pm" + data.species.pictureID + "_big.png";
     return /* @__PURE__ */ import_react.default.createElement("div", { className: "BattlePokemon", onClick: setSidebar }, /* @__PURE__ */ import_react.default.createElement("img", { src: url }));
   }
   function DamageOutput({ estimatedDamage, attacker, defender }) {
@@ -23585,7 +23585,7 @@
     return Math.floor(Math.floor(22 * power * (attackingStat / defensiveStat)) / 50);
   }
   function Move({ move, setMove }) {
-    return /* @__PURE__ */ import_react.default.createElement("div", { class: "Move" }, /* @__PURE__ */ import_react.default.createElement("input", { type: "text" }), /* @__PURE__ */ import_react.default.createElement("input", { type: "number", value: move.power, style: { width: "48px" }, onChange: (e) => {
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "Move" }, /* @__PURE__ */ import_react.default.createElement("input", { type: "text" }), /* @__PURE__ */ import_react.default.createElement("input", { type: "number", value: move.power, style: { width: "48px" }, onChange: (e) => {
       setMove((old) => ({
         ...old,
         power: parseInt(e.target.value)
