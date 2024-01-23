@@ -1,0 +1,164 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* 
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    --pad-size: 20px;
+    --margin-size: 10px;
+    --sidebar-width: 30vw;
+}
+
+#app {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: white;
+}
+
+
+.Sidebar {
+    height: 100vh;
+    width: var(--sidebar-width);
+
+    padding: var(--pad-size);
+
+    background-color: rgba(0, 0, 0, 0.5);    font-size: 12px;
+}
+
+.display {
+    height: 100vh;
+    width: 40vw;
+    background-color: aqua;
+    padding: var(--pad-size);
+}
+
+.BattlePokemon {
+    font-size: 12px;
+} */
+
+html {
+    --sidebar-width: 30vw;
+}
+
+#app {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Sidebar {
+    height: 100vh;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: black;
+    color: white;
+    width: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.PokemonSelector, .Type, .statContainer {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: calc(100vw - var(--sidebar-width));
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    background-color: antiquewhite;
+
+    width: 100%;
+}
+
+.Type {
+    text-align: center;
+}
+
+.statContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Stat {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.statName {
+    width: 60px;
+    text-align: center;
+}
+
+.baseStat, .totalStat {
+    width: 36px;
+    text-align: center;
+}
+
+#teamA {
+    background-color: blue;
+    justify-content: flex-start;
+}
+
+#teamB {
+    justify-content: flex-end;
+}
+
+
