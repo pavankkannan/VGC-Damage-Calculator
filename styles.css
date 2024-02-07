@@ -1,0 +1,249 @@
+#app {
+    display: flex;
+    flex-direction: row;
+}
+
+.Sidebar {
+    width: 27.5vw;
+    height: 100vh;
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* background-color: azure; */
+}
+
+#leftBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: bisque;
+}
+
+body {
+    background-color: rgb(51,181,235);
+    /* background-image: url("Battle\ Backgrounds/mesagoza.gif");
+    background-position: center;
+    background-size: cover; */
+}
+
+.display {
+    width: 46vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.PokemonSelector {
+    background-color: rgb(238, 209, 39);
+    border: none;
+    height: 10%;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    padding: 0 10px;
+    border-radius: 5px;
+    margin: 2px 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.Type {
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
+    height: 3.5%;
+    padding: 4px 10px;
+    border-radius: 5px;
+    background-color: rgb(35,111,146);
+    margin: 2px 0;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    color: white;
+}
+
+.type1, .type2 {
+    width: 40%;
+    height: 90%;
+    background-color: grey;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    background-color: rgb(26,58,86);
+    color: white;
+
+}
+
+.statContainer {
+    background-color: rgb(35,111,146);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2px 0;
+    border-radius: 5px;
+    padding: 4px 4px;
+}
+
+.Stat {
+    display: flex;
+    width: 100%;
+}
+
+.stat1 {
+    display: flex;
+    align-items: center;
+    padding: 1px 0;
+    font-family: 'Arial Narrow Bold', sans-serif;
+}
+
+.stat2 {
+    display: flex;
+    padding: 1px 0;
+    font-family: 'Arial Narrow Bold', sans-serif;
+}
+
+.statName {
+    width: 50px;
+    text-align: center;
+    color: white;
+    /* background-color: aliceblue; */
+}
+.baseStat, .totalStat {
+    width: 40px;
+    text-align: center;
+    color: white;
+    /* background-color: aliceblue; */
+}
+
+.ivBox, .evBox, .statChange {
+    background-color: rgb(35,111,146);
+    color: white;
+}
+
+.totalStat {
+    text-align: right;
+}
+
+.natureSelector, .abilitySelector, .itemSelector {
+    border: none;
+    margin: 2px 0;
+    background-color: rgb(35,111,146);
+    border-radius: 5px;
+    padding: 4px 2px;
+    font-size: 16px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    color: white;
+}
+
+.Move {
+    display: flex;
+    flex-direction: column;
+}
+
+.move1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2px 0;
+
+}
+
+.move2 {
+    display: flex;
+    /* justify-content: flex-end; */
+    margin-bottom: 16px;
+}
+
+.moveName, .moveCategory, .moveType, .movePower {
+    background-color: rgb(35,111,146); 
+    border-radius: 2.5px;
+    /* border: 1px solid white; */
+    /* border: none; */
+    color: white;
+    font-size: 16px;
+    margin: 0 2px;
+}
+
+.moveName {
+    width: 90%;
+}
+
+.moveType, .moveCategory {
+    width: 50%;
+    border: none;
+}
+
+::placeholder {
+    color: white;
+    font-style: italic;
+}
+
+.movePower {
+    width: 48px;
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    background-color: aliceblue;
+}
+
+#teamA {
+    justify-content: flex-end;
+    transform: scaleX(-1);
+}
+
+#teamB {
+    justify-content: flex-end;
+}
+
+.pokemonImg {
+    width: 15vw;
+    /* background-color: blue; */
+}
+
+.DamageOutput {
+    background-color: rgb(35,111,146);
+    color: white;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    height: 50px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 200px 0;
+    text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+    .moveType, .moveCategory {
+      width: 40%;
+    }
+  }
+
+
+@media screen and (max-width: 1400px) {
+    .Stat {
+        flex-direction: column;
+    }
+    .stat2 {
+        justify-content: flex-end;
+    }
+    .evSlider {
+        width: 50%;
+    }
+    .ivBox, .evBox {
+        width: 10%;
+    }
+    .totalStat {
+        text-align: center;
+    }
+    .DamageOutput {
+        padding: 0 4px;
+    }
+    .BattlePokemon {
+        justify-content: center;
+    }
+  }

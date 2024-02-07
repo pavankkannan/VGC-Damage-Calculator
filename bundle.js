@@ -1096,7 +1096,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect2(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1878,7 +1878,7 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect2;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -23510,12 +23510,171 @@
   // index.jsx
   var import_react = __toESM(require_react());
   var import_client = __toESM(require_client());
-  function App() {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, "Damage Calculator");
+  function usePokemon(name, allPokemon) {
+    const [data, setData] = (0, import_react.useState)({
+      name,
+      species: null,
+      type: null,
+      ability: null,
+      ivs: {},
+      evs: {}
+    });
+    function getPokemonWithDefaults(name2) {
+      const species = allPokemon?.[name2];
+      return {
+        species: {
+          ...species,
+          baseStats: {
+            Hp: parseInt(species.baseStats.Hp),
+            Atk: parseInt(species.baseStats.Atk),
+            Def: parseInt(species.baseStats.Def),
+            SpAtk: parseInt(species.baseStats.SpAtk),
+            SpDef: parseInt(species.baseStats.SpDef),
+            Speed: parseInt(species.baseStats.Speed)
+          }
+        },
+        type: species.types[0],
+        ability: species.abilities[0],
+        ivs: { "Hp": 31, "Atk": 31, "Def": 31, "SpAtk": 31, "SpDef": 31, "Speed": 31 },
+        evs: { "Hp": 0, "Atk": 0, "Def": 0, "SpAtk": 0, "SpDef": 0, "Speed": 0 }
+      };
+    }
+    (0, import_react.useEffect)(() => {
+      const pokemon = getPokemonWithDefaults(name);
+      setData({ ...data, ...pokemon });
+    }, [name]);
+    const editor = {
+      setName: (name2) => {
+        const pokemon = getPokemonWithDefaults(name2);
+        setData({ ...data, ...pokemon, name: name2 });
+      },
+      setType: (type) => {
+        setData({ ...data, type });
+      },
+      setAbility: (ability) => {
+        setData({ ...data, ability });
+      },
+      setIV: (statName, value) => {
+        setData({ ...data, ivs: { ...data.ivs, [statName]: value } });
+      },
+      setEV: (statName, value) => {
+        setData({ ...data, evs: { ...data.evs, [statName]: value } });
+      }
+    };
+    return [data, editor];
   }
-  var el = document.getElementById("app");
-  var app = (0, import_client.createRoot)(el);
-  app.render(/* @__PURE__ */ import_react.default.createElement(App, null));
+  function BattlePokemon({ data, setSidebar }) {
+    if (!data.species)
+      return null;
+    console.log(data);
+    const url = window.location.href + "PokemonIcons/Big/pm" + data.species.pictureID + "_big.png";
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "BattlePokemon", onClick: setSidebar }, /* @__PURE__ */ import_react.default.createElement("img", { src: url }));
+  }
+  function DamageOutput({ estimatedDamage, attacker, defender }) {
+    const healthPct = (estimatedDamage / defender?.species?.baseStats?.Hp * 100).toFixed(1);
+    const benchmark = Math.ceil(defender?.species?.baseStats?.Hp / estimatedDamage);
+    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("p", null, attacker.name, " will do approx. ", estimatedDamage, " Hit Points to ", defender.name, " (", healthPct, "%) - ", benchmark, "HKO "));
+  }
+  function PokemonSelector({ allPokemon, name, setName }) {
+    return /* @__PURE__ */ import_react.default.createElement("select", { value: name, onChange: (e) => setName(e.target.value) }, Object.values(allPokemon).map((p) => /* @__PURE__ */ import_react.default.createElement("option", { key: p.name, value: p.name }, p.name)));
+  }
+  function calculateStat(iv, ev, base) {
+    return Math.floor(Math.floor((2 * base + iv + Math.floor(ev / 4)) * 50 / 100) + 5);
+  }
+  function calculateDamage(power, attackingStat, defensiveStat) {
+    return Math.floor(Math.floor(22 * power * (attackingStat / defensiveStat)) / 50);
+  }
+  function Move({ move, setMove }) {
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "Move" }, /* @__PURE__ */ import_react.default.createElement("input", { type: "text" }), /* @__PURE__ */ import_react.default.createElement("input", { type: "number", value: move.power, style: { width: "48px" }, onChange: (e) => {
+      setMove((old) => ({
+        ...old,
+        power: parseInt(e.target.value)
+      }));
+    } }), /* @__PURE__ */ import_react.default.createElement("select", { defaultValue: "Type" }, /* @__PURE__ */ import_react.default.createElement("option", null, "NORMAL"), /* @__PURE__ */ import_react.default.createElement("option", null, "FIRE"), /* @__PURE__ */ import_react.default.createElement("option", null, "WATER"), /* @__PURE__ */ import_react.default.createElement("option", null, "ELECTRIC"), /* @__PURE__ */ import_react.default.createElement("option", null, "GRASS"), /* @__PURE__ */ import_react.default.createElement("option", null, "ICE"), /* @__PURE__ */ import_react.default.createElement("option", null, "FIGHTING"), /* @__PURE__ */ import_react.default.createElement("option", null, "POISON"), /* @__PURE__ */ import_react.default.createElement("option", null, "GROUND"), /* @__PURE__ */ import_react.default.createElement("option", null, "FLYING"), /* @__PURE__ */ import_react.default.createElement("option", null, "PSYCHIC"), /* @__PURE__ */ import_react.default.createElement("option", null, "BUG"), /* @__PURE__ */ import_react.default.createElement("option", null, "ROCK"), /* @__PURE__ */ import_react.default.createElement("option", null, "GHOST"), /* @__PURE__ */ import_react.default.createElement("option", null, "DRAGON"), /* @__PURE__ */ import_react.default.createElement("option", null, "DARK"), /* @__PURE__ */ import_react.default.createElement("option", null, "STEEL"), /* @__PURE__ */ import_react.default.createElement("option", null, "FAIRY")), /* @__PURE__ */ import_react.default.createElement("select", { onChange: (e) => {
+      setMove((old) => ({
+        ...old,
+        category: e.target.value
+      }));
+    } }, /* @__PURE__ */ import_react.default.createElement("option", null, "Physical"), /* @__PURE__ */ import_react.default.createElement("option", null, "Special")));
+  }
+  function Type({ types }) {
+    if (types.length == 1) {
+      return /* @__PURE__ */ import_react.default.createElement("div", { className: "Type" }, /* @__PURE__ */ import_react.default.createElement("p", null, "TYPE: ", types[0]));
+    }
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "Type" }, /* @__PURE__ */ import_react.default.createElement("p", null, "TYPES: ", types[0], " / ", types[1]));
+  }
+  function Stat({ statName, baseStat, iv, ev, setIV, setEV }) {
+    let totalStat = calculateStat(iv, ev, baseStat);
+    if (isNaN(totalStat)) {
+      totalStat = calculateStat(iv, 0, baseStat);
+    }
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "Stat" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "statName" }, /* @__PURE__ */ import_react.default.createElement("label", null, statName, ":")), /* @__PURE__ */ import_react.default.createElement("div", { className: "baseStat" }, /* @__PURE__ */ import_react.default.createElement("label", null, baseStat, " ")), /* @__PURE__ */ import_react.default.createElement("input", { type: "number", value: iv, min: "0", max: "31", onChange: (e) => {
+      setIV(parseInt(e.target.value));
+    } }), /* @__PURE__ */ import_react.default.createElement("input", { type: "number", value: ev, min: 0, max: 252, onChange: (e) => {
+      let v = parseInt(e.target.value);
+      setEV(Math.min(252, v));
+    } }), /* @__PURE__ */ import_react.default.createElement("input", { type: "range", min: "0", max: "252", value: ev, step: "4", onChange: (e) => {
+      setEV(parseInt(e.target.value));
+    } }), /* @__PURE__ */ import_react.default.createElement("select", { defaultValue: "--" }, /* @__PURE__ */ import_react.default.createElement("option", null, "+6"), /* @__PURE__ */ import_react.default.createElement("option", null, "+5"), /* @__PURE__ */ import_react.default.createElement("option", null, "+4"), /* @__PURE__ */ import_react.default.createElement("option", null, "+3"), /* @__PURE__ */ import_react.default.createElement("option", null, "+2"), /* @__PURE__ */ import_react.default.createElement("option", null, "+1"), /* @__PURE__ */ import_react.default.createElement("option", null, "-6"), /* @__PURE__ */ import_react.default.createElement("option", null, "--"), /* @__PURE__ */ import_react.default.createElement("option", null, "-1"), /* @__PURE__ */ import_react.default.createElement("option", null, "-2"), /* @__PURE__ */ import_react.default.createElement("option", null, "-3"), /* @__PURE__ */ import_react.default.createElement("option", null, "-4"), /* @__PURE__ */ import_react.default.createElement("option", null, "-5")), /* @__PURE__ */ import_react.default.createElement("div", { className: "totalStat" }, /* @__PURE__ */ import_react.default.createElement("label", null, totalStat)));
+  }
+  function Sidebar({ choice, allPokemon, move, setMove }) {
+    const [data, editor] = choice;
+    if (!data || !editor || !data.species) {
+      return null;
+    }
+    const statNames = ["Hp", "Atk", "Def", "SpAtk", "SpDef", "Speed"];
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "Sidebar" }, /* @__PURE__ */ import_react.default.createElement(PokemonSelector, { ...{ allPokemon, name: data.name, setName: editor.setName } }), /* @__PURE__ */ import_react.default.createElement(Type, { types: data.species.types }), /* @__PURE__ */ import_react.default.createElement("div", { className: "statContainer" }, statNames.map((statName) => /* @__PURE__ */ import_react.default.createElement(
+      Stat,
+      {
+        key: statName,
+        statName,
+        baseStat: data.species.baseStats[statName],
+        iv: data.ivs[statName],
+        ev: data.evs[statName],
+        setIV: (value) => editor.setIV(statName, value),
+        setEV: (value) => editor.setEV(statName, value)
+      }
+    ))), /* @__PURE__ */ import_react.default.createElement("select", null, /* @__PURE__ */ import_react.default.createElement("option", null, "Nature")), /* @__PURE__ */ import_react.default.createElement("select", { value: data.ability, onChange: (e) => editor.setAbility(e.target.value) }, data.species.abilities.map((a) => /* @__PURE__ */ import_react.default.createElement("option", { key: a, value: a }, a))), /* @__PURE__ */ import_react.default.createElement("select", null, /* @__PURE__ */ import_react.default.createElement("option", null, "Item")), /* @__PURE__ */ import_react.default.createElement("br", null), /* @__PURE__ */ import_react.default.createElement(Move, { ...{ move, setMove } }));
+  }
+  function App({ allPokemon }) {
+    const [aLeft, aLeftEditor] = usePokemon("Charmander", allPokemon);
+    const [aRight, aRightEditor] = usePokemon("Bulbasaur", allPokemon);
+    const [bLeft, bLeftEditor] = usePokemon("Pikachu", allPokemon);
+    const [bRight, bRightEditor] = usePokemon("Squirtle", allPokemon);
+    const [aSelected, setASelected] = (0, import_react.useState)("left");
+    const [bSelected, setBSelected] = (0, import_react.useState)("right");
+    const [move, setMove] = (0, import_react.useState)({ name: "", power: 50, type: "Normal", category: "Physical" });
+    const sides = {
+      a: {
+        left: [aLeft, aLeftEditor],
+        right: [aRight, aRightEditor]
+      },
+      b: {
+        left: [bLeft, bLeftEditor],
+        right: [bRight, bRightEditor]
+      }
+    };
+    const aChoice = sides["a"]?.[aSelected] || [{}, null];
+    const bChoice = sides["b"]?.[bSelected] || [{}, null];
+    const attacker = aChoice[0];
+    const defender = bChoice[0];
+    const attackingStat = move.category == "Physical" ? "Atk" : "SpAtk";
+    const defendingStat = move.category == "Physical" ? "Def" : "SpDef";
+    const estimatedDamage = calculateDamage(move.power, attacker?.species?.baseStats?.[attackingStat], defender?.species?.baseStats?.[defendingStat]);
+    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement(Sidebar, { ...{ choice: aChoice, allPokemon, move, setMove } }), /* @__PURE__ */ import_react.default.createElement("div", { className: "display" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "team", id: "teamB" }, /* @__PURE__ */ import_react.default.createElement(BattlePokemon, { ...{ data: bLeft, setSidebar: () => setBSelected("left") } }), /* @__PURE__ */ import_react.default.createElement(BattlePokemon, { ...{ data: bRight, setSidebar: () => setBSelected("right") } })), /* @__PURE__ */ import_react.default.createElement("div", { className: "team", id: "teamA" }, /* @__PURE__ */ import_react.default.createElement(BattlePokemon, { ...{ data: aLeft, setSidebar: () => setASelected("left") } }), /* @__PURE__ */ import_react.default.createElement(BattlePokemon, { ...{ data: aRight, setSidebar: () => setASelected("right") } })), /* @__PURE__ */ import_react.default.createElement(DamageOutput, { ...{ attacker, defender, estimatedDamage } })), /* @__PURE__ */ import_react.default.createElement(Sidebar, { ...{ choice: bChoice, allPokemon, move, setMove } }));
+  }
+  async function getAllPokemon() {
+    const file = await fetch("pokemon.json");
+    const data = await file.json();
+    return data;
+  }
+  async function main() {
+    const allPokemon = await getAllPokemon();
+    const el = document.getElementById("app");
+    const app = (0, import_client.createRoot)(el);
+    app.render(/* @__PURE__ */ import_react.default.createElement(App, { ...{ allPokemon } }));
+  }
+  main();
 })();
 /*! Bundled license information:
 
