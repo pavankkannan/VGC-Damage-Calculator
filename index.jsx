@@ -269,8 +269,6 @@ function Sidebar({ choice, allPokemon, move, setMove }) {
             <Move {...{ move, setMove }} />
             <Move {...{ move, setMove }} />
             <Move {...{ move, setMove }} />
-
-
         </div>
     )
 }
