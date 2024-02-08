@@ -23599,9 +23599,9 @@
   }
   function Type({ types }) {
     if (types.length == 1) {
-      return /* @__PURE__ */ import_react.default.createElement("div", { className: "Type" }, /* @__PURE__ */ import_react.default.createElement("p", null, "Type:"), "\xA0", /* @__PURE__ */ import_react.default.createElement("div", { className: "type1" }, /* @__PURE__ */ import_react.default.createElement("p", null, types[0])));
+      return /* @__PURE__ */ import_react.default.createElement("div", { className: "Type" }, /* @__PURE__ */ import_react.default.createElement("p", null, "Type:"), "\xA0", /* @__PURE__ */ import_react.default.createElement("div", { className: `type1 ${types[0]}` }, /* @__PURE__ */ import_react.default.createElement("p", null, types[0])));
     } else {
-      return /* @__PURE__ */ import_react.default.createElement("div", { className: "Type" }, /* @__PURE__ */ import_react.default.createElement("p", null, "Types:"), "\xA0", /* @__PURE__ */ import_react.default.createElement("div", { className: "type1" }, /* @__PURE__ */ import_react.default.createElement("p", null, types[0])), "\xA0", /* @__PURE__ */ import_react.default.createElement("div", { className: "type2" }, /* @__PURE__ */ import_react.default.createElement("p", null, types[1])));
+      return /* @__PURE__ */ import_react.default.createElement("div", { className: "Type" }, /* @__PURE__ */ import_react.default.createElement("p", null, "Types:"), "\xA0", /* @__PURE__ */ import_react.default.createElement("div", { className: `type1 ${types[0]}` }, /* @__PURE__ */ import_react.default.createElement("p", null, types[0])), "\xA0", /* @__PURE__ */ import_react.default.createElement("div", { className: `type2 ${types[1]}` }, /* @__PURE__ */ import_react.default.createElement("p", null, types[1])));
     }
   }
   function Stat({ statName, baseStat, iv, ev, setIV, setEV }) {

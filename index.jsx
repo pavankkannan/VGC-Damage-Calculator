@@ -152,7 +152,7 @@ function Type({ types }) {
         return(
             <div className="Type">
                 <p>Type:</p>&nbsp;
-                <div className="type1">
+                <div className={`type1 ${types[0]}`}>
                     <p>{types[0]}</p>
                 </div>
             </div>
@@ -162,10 +162,10 @@ function Type({ types }) {
         return( 
             <div className="Type">
                 <p>Types:</p>&nbsp;
-                <div className="type1">
+                <div className={`type1 ${types[0]}`}>
                     <p>{types[0]}</p>
                 </div>&nbsp;
-                <div className="type2">
+                <div className={`type2 ${types[1]}`}>
                     <p>{types[1]}</p>
                 </div>
             </div>

@@ -71,7 +71,10 @@ body {
     font-family: 'Arial Narrow Bold', sans-serif;
     background-color: rgb(26,58,86);
     color: white;
+}
 
+.Grass {
+    background-color: green;
 }
 
 .statContainer {
